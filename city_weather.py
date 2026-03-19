@@ -10,7 +10,7 @@ fonts = [f.name for f in fm.fontManager.ttflist if 'Sim' in f.name or 'Kai' in f
 print("可用的中文字体：", fonts)
 
 # 选一个可用的，比如 'SimHei', 'KaiTi', 'Microsoft YaHei'
-plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']  # 试试微软雅黑
+plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']  # 微软雅黑
 plt.rcParams['axes.unicode_minus'] = False
 
 import os
