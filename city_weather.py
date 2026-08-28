@@ -19,7 +19,21 @@ print("可用的中文字体：", fonts)
 plt.rcParams['font.sans-serif'] = ['Microsoft YaHei']  # 微软雅黑
 plt.rcParams['axes.unicode_minus'] = False
 
-
+def get_location(place):
+    """将地名转换为经纬度，支持区/街道"""
+    url = f"https://restapi.amap.com/v3/geocode/geo?address={place}&key={GAODE_API_KEY}"
+    try:
+        resp = requests.get(url).json()
+        if resp.get('geocodes') and len(resp['geocodes']) > 0:
+            location = resp['geocodes'][0]['location']
+            lng, lat = location.split(',')
+            return float(lat), float(lng)
+        else:
+            print(f"未找到 {place} 的经纬度")
+            return None, None
+    except Exception as e:
+        print(f"地理编码失败: {e}")
+        return None, None
 
 # 1. 调用API拉取数据
 def fetch_weather_data(city):
